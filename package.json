@@ -1,0 +1,24 @@
+{
+  "name": "Node-gRPC-Chat-App",
+  "version": "1.0.0",
+  "description": "This is a chat app that runs on the terminal. The app was implemented using gRPC and node.js.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plgrazon/Node-gRPC-Chat-App.git"
+  },
+  "keywords": [],
+  "author": "Paolo Razon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plgrazon/Node-gRPC-Chat-App/issues"
+  },
+  "homepage": "https://github.com/plgrazon/Node-gRPC-Chat-App#readme",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.3.0",
+    "grpc": "^1.13.1"
+  }
+}
