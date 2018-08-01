@@ -36,7 +36,6 @@ const send = (call, callback) => {
 }
 
 const notifyChat = (message) => {
-  console.log(message)
   users.forEach(user => {
     user.write(message);
   });
