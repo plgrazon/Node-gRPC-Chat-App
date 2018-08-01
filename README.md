@@ -2,7 +2,7 @@
 
 This is a chat app that runs on the terminal. The app was implemented using gRPC and node.js.
 
-###### Using the app:
+### Using the app:
 
 ```
 npm install
