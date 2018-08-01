@@ -20,36 +20,40 @@ const proto = grpc.loadPackageDefinition(
 );
 
 const users = [];
+let username;
 
-const join = (call, callback) => {
+const join = (call) => {
   users.push(call);
   notifyChat(
     {
-      users: "server",
-      text: "new user joined"
+      user: "server",
+      text: `${username} joined the chat`
     }
   )
 }
 
 const send = (call, callback) => {
+  notifyChat(call.request);
+}
+
+const notifyChat = (message) => {
   users.forEach(user => {
     user.write(message);
   });
 }
 
-const notifyChat = (notification) => {
-  users.forEach(user => {
-    user.write(message);
-  });
+const user = (call) => {
+  username = call.request.username;
 }
 
 const main = () => {
   const server = new grpc.Server();
-  const PORT = 8080;
+  const PORT = 3000;
   server.addService(proto.app.Chat.service,
                     {
                       join: join,
-                      send: send
+                      send: send,
+                      user: user
                     }
                   );
   server.bind(`localhost:${PORT}`, grpc.ServerCredentials.createInsecure());
