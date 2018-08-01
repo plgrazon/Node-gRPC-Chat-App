@@ -36,3 +36,25 @@ const send = (call, callback) => {
     user.write(message);
   });
 }
+
+const notifyChat = (notification) => {
+  users.forEach(user => {
+    user.write(message);
+  });
+}
+
+const main = () => {
+  const server = new grpc.Server();
+  const PORT = 8080;
+  server.addService(proto.app.Chat.service,
+                    {
+                      join: join,
+                      send: send
+                    }
+                  );
+  server.bind(`localhost:${PORT}`, grpc.ServerCredentials.createInsecure());
+  server.start();
+  console.log(`Connect to server on PORT: ${PORT}`);
+}
+
+main();
