@@ -34,13 +34,7 @@ const client = new proto.app.Chat(
 );
 
 const main = () => {
-
-  client.user({username: username}, (err, res) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log('who ', res.username)
-  });
+  let channel = client.join({user: username});
 
   const stream = (chunk) => {
     if (chunk.user === username) {
@@ -48,8 +42,6 @@ const main = () => {
     }
     console.log(`${chunk.user}: ${chunk.text}`);
   }
-
-  let channel = client.join({user: username});
 
   channel.on('data', stream);
 
@@ -60,6 +52,8 @@ const main = () => {
 
 rl.question('What\'s your name? ', (input) => {
   username = input;
+
+  client.user({username: input}, res => {});
 
   main();
 });

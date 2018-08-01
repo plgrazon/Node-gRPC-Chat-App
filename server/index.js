@@ -20,14 +20,13 @@ const proto = grpc.loadPackageDefinition(
 );
 
 const users = [];
-let username;
 
 const join = (call) => {
   users.push(call);
   notifyChat(
     {
-      user: "server",
-      text: `${username} joined the chat`
+      user: "Server",
+      text: "new user joined"
     }
   )
 }
@@ -37,13 +36,14 @@ const send = (call, callback) => {
 }
 
 const notifyChat = (message) => {
+  console.log(message)
   users.forEach(user => {
     user.write(message);
   });
 }
 
 const user = (call) => {
-  username = call.request.username;
+  console.log(`Hello ${call.request.username}, welcome to gRPC chat`);
 }
 
 const main = () => {
